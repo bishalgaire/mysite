@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="{% static 'admin/css/main.css' %}" />
+
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+              <a class="navbar-brand" href="#">CodeSarathi</a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              </div>
+            </div>
+          </nav>
+
+          <div class="container">
+            <div class="row">
+              <div class="col-md-8"><br>
+      {% for post in posts %}
+                <div class="card mb-4">
+                  <div class="card-body">
+
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.body|truncatewords:30|linebreaks }}
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-success">Read More &rarr;</a>
+                  </div>
+                  <div class="card-footer text-muted">
+                    Posted on {{ post.publish }} by <a href="#">{{ post.author }}</a>
+                  </div>
+                </div>
+      {% endfor %}
+
+                {% include "pagination.html" with page=posts %}
+      
+              </div>
+      
+             <!-- Sidebar -->
+              <div class="col-md-4">
+      
+                <div class="card my-4">
+                  <h5 class="card-header">Search</h5>
+                  <div class="card-body">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search for...">
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="button">Go!</button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+      
+                <!-- categories -->
+                <div class="card my-4">
+                  <h5 class="card-header">Categories</h5>
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                          <li>
+                            <a href="#">Web Design</a>
+                          </li>
+                          <li>
+                            <a href="#">HTML</a>
+                          </li>
+                          <li>
+                            <a href="#">Fun</a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="col-lg-6">
+                        <ul class="list-unstyled mb-0">
+                          <li>
+                            <a href="#">JavaScript</a>
+                          </li>
+                          <li>
+                            <a href="#">CSS</a>
+                          </li>
+                          <li>
+                            <a href="#">Php</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      
+              </div>
+      
+            </div>
+      
+          </div>
+      
+          <footer class="py-5 bg-dark">
+            <div class="container">
+              <p class="m-0 text-center text-white">Copyright &and; CodeSarathi 2018</p>
+            </div>
+          </footer>
+      
+
+</body>
+</html>
